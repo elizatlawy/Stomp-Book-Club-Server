@@ -1,5 +1,6 @@
 package bgu.spl.net.api.outFrame;
 
+import bgu.spl.net.srv.ConnectionsImpl;
 import bgu.spl.net.srv.ServerData;
 
 public class ErrorFrame {
@@ -9,6 +10,11 @@ public class ErrorFrame {
     public ErrorFrame(String message) {
         this.message = message;
 
+    }
+
+    public void process(int connectionId, ConnectionsImpl connections) {
+        connections.send(connectionId,toString());
+        connections.disconnect(connectionId);
     }
 
     @Override

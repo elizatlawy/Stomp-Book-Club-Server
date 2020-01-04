@@ -1,5 +1,6 @@
 package bgu.spl.net.srv;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -36,6 +37,11 @@ public class ConnectionsImpl implements Connections {
 
     @Override
     public void disconnect(int connectionId) {
+        try {
+            activeConnections.get(connectionId).close();
+        } catch (IOException e) {
+            System.out.println("Conception close failed :" + e.getMessage() );
+        }
         activeConnections.remove(connectionId);
     }
 }

@@ -15,6 +15,7 @@ public class ConnectFrame<T> {
 
 
     public ConnectFrame(String[] message, int connectionId, Connections<T> connections) {
+        // TODO check what to do in case of socket error
         char delimiter = ':';
         version = message[1].substring(message[1].indexOf(delimiter) + 1);
         host = message[2].substring(message[2].indexOf(delimiter) + 1);
@@ -32,22 +33,24 @@ public class ConnectFrame<T> {
             serverData.getRegisteredUsers().put(userName, currUser);
             currUser.setConnectionId(connectionId);
             ConnectedFrame connectedFrame = new ConnectedFrame(version);
-            connections.send(connectionId,connectedFrame.toString());
+            connectedFrame.process(connectionId,connections);
         }
         // user exist
         else if (password.equals(currUser.getPassword())) { // correct password
             if (currUser.getConnectionId() == -1) {  // the user is not logged in
                 currUser.setConnectionId(connectionId);
+                ConnectedFrame connectedFrame = new ConnectedFrame(version);
+                connectedFrame.process(connectionId,connections);
 
             }
             else { // the user is already logged in
                 ErrorFrame errorFrame = new ErrorFrame("User already logged in");
-                connections.send(connectionId,errorFrame.toString());
+                errorFrame.process(connectionId,connections);
             }
         }
         else { // wrong password
             ErrorFrame errorFrame = new ErrorFrame("Wrong password");
-            connections.send(connectionId,errorFrame.toString());
+            errorFrame.process(connectionId,connections);
         }
     }
 
