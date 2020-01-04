@@ -1,5 +1,6 @@
 package bgu.spl.net.api.outFrame;
 
+import bgu.spl.net.srv.Connections;
 import bgu.spl.net.srv.ConnectionsImpl;
 import bgu.spl.net.srv.ServerData;
 
@@ -12,7 +13,8 @@ public class ErrorFrame {
 
     }
 
-    public void process(int connectionId, ConnectionsImpl connections) {
+    public void process(int connectionId,  Connections<String> connections) {
+        ServerData.getInstance().messageCounterIncrement(); // TODO check if needed
         connections.send(connectionId,toString());
         connections.disconnect(connectionId);
     }
@@ -20,7 +22,7 @@ public class ErrorFrame {
     @Override
     public String toString() {
         int messageNumber = ServerData.getInstance().getMessageCounter();
-        String output = "EROOR" + '\n'
+        String output = "ERROR" + '\n'
                 + "receipt-id:" + "message-" + messageNumber + '\n'
                 + "message: " + message + '\n' + '\u0000';
         return output;

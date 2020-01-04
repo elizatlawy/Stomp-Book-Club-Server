@@ -1,23 +1,20 @@
 package bgu.spl.net.api.outFrame;
 
 import bgu.spl.net.srv.Connections;
-import bgu.spl.net.srv.ConnectionsImpl;
 
-public class ConnectedFrame {
-    private String version;
+public class ReceiptFrame {
+    private String receipt;
 
-    public ConnectedFrame(String version) {
-        this.version = version;
+    public ReceiptFrame(String receipt) {
+        this.receipt = receipt;
     }
-
     public void process(int connectionId,  Connections<String> connections) {
         connections.send(connectionId,toString());
     }
 
-
     @Override
     public String toString() {
-        String output = "CONNECTED" + '\n' + "version:"+version + '\n' + '\u0000';
+        String output = "RECEIPT" + '\n' + "receipt-id:" + receipt + + '\n' + '\u0000';
         return output;
     }
 }

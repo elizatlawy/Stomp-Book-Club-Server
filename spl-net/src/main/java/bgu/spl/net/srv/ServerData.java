@@ -1,5 +1,6 @@
 package bgu.spl.net.srv;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -9,8 +10,9 @@ public class ServerData {
         private static ServerData instance = new ServerData();
     }
 
-    private ConcurrentHashMap<String, List<User>> genreFollowers;
+    private ConcurrentHashMap<String, LinkedList<User>> genreFollowers;
     private ConcurrentHashMap<String, User> registeredUsers;
+    private ConcurrentHashMap<Integer, User> activeUsers;
     private  ConnectionsImpl connections;
     private int messageCounter;
 
@@ -19,6 +21,7 @@ public class ServerData {
         genreFollowers = new ConcurrentHashMap<>();
         registeredUsers = new ConcurrentHashMap<>();
         connections =  new ConnectionsImpl();
+        activeUsers = new ConcurrentHashMap<>();
         messageCounter = 0;
     }
 
@@ -27,7 +30,23 @@ public class ServerData {
 
     }
 
-    public ConcurrentHashMap<String, List<User>> getGenreFollowers() {
+    public void addFollower(String topic, User user) {
+        genreFollowers.putIfAbsent(topic, new LinkedList<>());
+        LinkedList topicList = genreFollowers.get(topic);
+        synchronized (topicList) {
+            topicList.add(user);
+        }
+    }
+
+    public void removeFollower (String topic, User user){
+        LinkedList topicList = genreFollowers.get(topic);
+        synchronized (topicList) {
+            topicList.remove(user);
+        }
+    }
+
+
+    public ConcurrentHashMap<String, LinkedList<User>> getGenreFollowers() {
         return genreFollowers;
     }
 
@@ -44,6 +63,10 @@ public class ServerData {
     }
     public void messageCounterIncrement(){
         messageCounter++;
+    }
+
+    public ConcurrentHashMap<Integer, User> getActiveUsers() {
+        return activeUsers;
     }
 
 }

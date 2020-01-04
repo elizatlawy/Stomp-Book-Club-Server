@@ -4,17 +4,17 @@ import bgu.spl.net.api.outFrame.ConnectedFrame;
 import bgu.spl.net.api.outFrame.ErrorFrame;
 import bgu.spl.net.srv.*;
 
-public class ConnectFrame<T> {
+public class ConnectFrame {
     private String version;
     private String host;
     private String userName;
     private String password;
     private int connectionId;
     private ServerData serverData;
-    private ConnectionsImpl connections;
+    private  Connections<String> connections;
 
 
-    public ConnectFrame(String[] message, int connectionId, Connections<T> connections) {
+    public ConnectFrame(String[] message, int connectionId, Connections<String> connections) {
         // TODO check what to do in case of socket error
         char delimiter = ':';
         version = message[1].substring(message[1].indexOf(delimiter) + 1);
@@ -23,7 +23,7 @@ public class ConnectFrame<T> {
         password = message[4].substring(message[4].indexOf(delimiter) + 1);
         serverData = ServerData.getInstance();
         this.connectionId = connectionId;
-        this.connections = (ConnectionsImpl) connections;
+        this.connections = connections;
     }
 
     public void process() {
@@ -32,6 +32,7 @@ public class ConnectFrame<T> {
             currUser = new User(userName, password);
             serverData.getRegisteredUsers().put(userName, currUser);
             currUser.setConnectionId(connectionId);
+            serverData.getActiveUsers().put(connectionId,currUser);
             ConnectedFrame connectedFrame = new ConnectedFrame(version);
             connectedFrame.process(connectionId,connections);
         }
@@ -39,6 +40,7 @@ public class ConnectFrame<T> {
         else if (password.equals(currUser.getPassword())) { // correct password
             if (currUser.getConnectionId() == -1) {  // the user is not logged in
                 currUser.setConnectionId(connectionId);
+                serverData.getActiveUsers().put(connectionId,currUser);
                 ConnectedFrame connectedFrame = new ConnectedFrame(version);
                 connectedFrame.process(connectionId,connections);
 
