@@ -16,15 +16,22 @@ public class BlockingConnectionHandler<T> implements Runnable, ConnectionHandler
     private BufferedOutputStream out;
     private volatile boolean connected = true;
 
-    public BlockingConnectionHandler(Socket sock, MessageEncoderDecoder<T> reader, MessagingProtocol<T> protocol) {
+    private ConnectionsImpl connections;
+    private int id;
+
+    public BlockingConnectionHandler(Socket sock, MessageEncoderDecoder<T> reader, MessagingProtocol<T> protocol,ConnectionsImpl connections, int id ) {
         this.sock = sock;
         this.encdec = reader;
         this.protocol = protocol;
+        this.connections = connections;
+        this.id = id;
+
     }
 
     @Override
     public void run() {
         try (Socket sock = this.sock) { //just for automatic closing
+            connections.connect(id,this);
             int read;
 
             in = new BufferedInputStream(sock.getInputStream());

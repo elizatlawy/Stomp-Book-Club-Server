@@ -3,8 +3,13 @@ package bgu.spl.net.srv;
 public class User {
     private String userName;
     private String password;
-    private int connectionId;
+    private int connectionId; // -1 represent disconnected user
 
+    public User(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+        connectionId = -1;
+    }
 
     public String getUserName() {
         return userName;
