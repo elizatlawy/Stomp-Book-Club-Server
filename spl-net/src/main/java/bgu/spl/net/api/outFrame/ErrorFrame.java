@@ -14,16 +14,16 @@ public class ErrorFrame {
     }
 
     public void process(int connectionId,  Connections<String> connections) {
-        ServerData.getInstance().messageCounterIncrement(); // TODO check if needed
+        int messageNumber = ServerData.getInstance().incrementAndGetMsgCounter();
+        receiptId = "message-" + messageNumber;
         connections.send(connectionId,toString());
         connections.disconnect(connectionId);
     }
 
     @Override
     public String toString() {
-        int messageNumber = ServerData.getInstance().getMessageCounter();
         String output = "ERROR" + '\n'
-                + "receipt-id:" + "message-" + messageNumber + '\n'
+                + "receipt-id:" +  receiptId +  '\n'
                 + "message: " + message + '\n' + '\u0000';
         return output;
     }

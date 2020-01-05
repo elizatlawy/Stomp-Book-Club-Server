@@ -9,12 +9,12 @@ public class ConnectFrame {
     private String host;
     private String userName;
     private String password;
-    private int connectionId;
     private ServerData serverData;
-    private  Connections<String> connections;
 
 
-    public ConnectFrame(String[] message, int connectionId, Connections<String> connections) {
+    public ConnectFrame() {}
+
+    private void initialize (String[] message){
         // TODO check what to do in case of socket error
         char delimiter = ':';
         version = message[1].substring(message[1].indexOf(delimiter) + 1);
@@ -22,11 +22,13 @@ public class ConnectFrame {
         userName = message[3].substring(message[3].indexOf(delimiter) + 1);
         password = message[4].substring(message[4].indexOf(delimiter) + 1);
         serverData = ServerData.getInstance();
-        this.connectionId = connectionId;
-        this.connections = connections;
     }
 
-    public void process() {
+
+
+
+    public void process(String[] message, int connectionId, Connections<String> connections) {
+        initialize(message);
         User currUser = serverData.getRegisteredUsers().get(userName);
         if (currUser == null) { // user does not exist
             currUser = new User(userName, password);

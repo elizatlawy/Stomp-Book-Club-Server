@@ -3,6 +3,7 @@ package bgu.spl.net.srv;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ServerData {
 
@@ -14,7 +15,7 @@ public class ServerData {
     private ConcurrentHashMap<String, User> registeredUsers;
     private ConcurrentHashMap<Integer, User> activeUsers;
     private  ConnectionsImpl connections;
-    private int messageCounter;
+    private AtomicInteger messageCounter;
 
 
     private ServerData() {
@@ -22,7 +23,7 @@ public class ServerData {
         registeredUsers = new ConcurrentHashMap<>();
         connections =  new ConnectionsImpl();
         activeUsers = new ConcurrentHashMap<>();
-        messageCounter = 0;
+        messageCounter.set(0);
     }
 
     public static ServerData getInstance(){
@@ -58,11 +59,8 @@ public class ServerData {
         return connections;
     }
 
-    public int getMessageCounter() {
-        return messageCounter;
-    }
-    public void messageCounterIncrement(){
-        messageCounter++;
+    public int incrementAndGetMsgCounter() {
+        return  messageCounter.incrementAndGet();
     }
 
     public ConcurrentHashMap<Integer, User> getActiveUsers() {
