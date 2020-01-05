@@ -34,8 +34,8 @@ public class User {
     public void removeSubscription(String id, String topic){
         subscriptionsById.remove(id);
         subscriptionsByTopic.remove(topic);
-
     }
+
 
 
 

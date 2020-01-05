@@ -1,9 +1,6 @@
 package bgu.spl.net.api;
 
-import bgu.spl.net.api.inFrames.ConnectFrame;
-import bgu.spl.net.api.inFrames.SendFrame;
-import bgu.spl.net.api.inFrames.SubscribeFrame;
-import bgu.spl.net.api.inFrames.UnsubscribeFrame;
+import bgu.spl.net.api.inFrames.*;
 import bgu.spl.net.srv.Connections;
 import bgu.spl.net.srv.ConnectionsImpl;
 
@@ -40,6 +37,8 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol {
             send.process(msg,connectionId, connections);
         }
         else if(msg[0] == "DISCONNECT"){
+            DisconnectFrame disconnectFrame = new DisconnectFrame();
+
 
 
         }
