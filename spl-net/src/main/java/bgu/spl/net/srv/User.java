@@ -6,6 +6,7 @@ public class User {
     private String userName;
     private String password;
     private int connectionId; // -1 represent disconnected user
+    private ServerData serverData;
     private ConcurrentHashMap<String,String> subscriptionsById; // key: subscription id, value: topic name
     private ConcurrentHashMap<String,String> subscriptionsByTopic; // key: topic name value: subscription
 
@@ -18,6 +19,7 @@ public class User {
         connectionId = -1;
         subscriptionsById = new ConcurrentHashMap<>();
         subscriptionsByTopic = new ConcurrentHashMap<>();
+        serverData = ServerData.getInstance();
     }
 
     public void addSubscription(String id, String topic){
@@ -34,6 +36,17 @@ public class User {
     public void removeSubscription(String id, String topic){
         subscriptionsById.remove(id);
         subscriptionsByTopic.remove(topic);
+    }
+
+    public void logout(){
+        // remove yourself from all topics
+        for( String currTopic : subscriptionsByTopic.keySet() ){
+            ServerData.getInstance().removeFollower(currTopic,this);
+        }
+        serverData.getActiveUsers().remove(connectionId);
+        connectionId = -1;
+        subscriptionsById.clear();
+        subscriptionsByTopic.clear();
     }
 
 

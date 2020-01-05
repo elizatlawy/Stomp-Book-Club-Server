@@ -12,8 +12,8 @@ public class ServerData {
     }
 
     private ConcurrentHashMap<String, LinkedList<User>> genreFollowers;
-    private ConcurrentHashMap<String, User> registeredUsers;
-    private ConcurrentHashMap<Integer, User> activeUsers;
+    private ConcurrentHashMap<String, User> registeredUsers; // key: userName value: User
+    private ConcurrentHashMap<Integer, User> activeUsers; // key: connectionId value: User
     private  ConnectionsImpl connections;
     private AtomicInteger messageCounter;
 
