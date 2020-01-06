@@ -38,6 +38,11 @@ public class User {
         subscriptionsByTopic.remove(topic);
     }
 
+    public void login(int connectionId) {
+       this.connectionId = connectionId;
+        serverData.getActiveUsers().put(connectionId,this);
+    }
+
     public void logout(){
         // remove yourself from all topics
         for( String currTopic : subscriptionsByTopic.keySet() ){
@@ -49,14 +54,6 @@ public class User {
         subscriptionsByTopic.clear();
     }
 
-
-
-
-
-
-
-
-
     public String getUserName() {
         return userName;
     }
@@ -67,9 +64,5 @@ public class User {
 
     public int getConnectionId() {
         return connectionId;
-    }
-
-    public void setConnectionId(int connectionId) {
-        this.connectionId = connectionId;
     }
 }

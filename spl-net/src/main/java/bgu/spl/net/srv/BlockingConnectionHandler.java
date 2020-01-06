@@ -37,7 +37,7 @@ public class BlockingConnectionHandler<T> implements Runnable, ConnectionHandler
 
             in = new BufferedInputStream(sock.getInputStream());
             out = new BufferedOutputStream(sock.getOutputStream());
-            // TODO: CHECK IF IT SHOLUD BE HERE OR IN THE BaseServer
+            // TODO: CHECK IF IT SHOULD BE HERE OR IN THE BaseServer
             ((StompMessagingProtocol)protocol).start(id,connections);
 
             while (!protocol.shouldTerminate() && connected && (read = in.read()) >= 0) {

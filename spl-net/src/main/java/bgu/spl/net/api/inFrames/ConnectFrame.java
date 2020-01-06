@@ -33,16 +33,14 @@ public class ConnectFrame {
         if (currUser == null) { // user does not exist
             currUser = new User(userName, password);
             serverData.getRegisteredUsers().put(userName, currUser);
-            currUser.setConnectionId(connectionId);
-            serverData.getActiveUsers().put(connectionId,currUser);
+            currUser.login(connectionId);
             ConnectedFrame connectedFrame = new ConnectedFrame(version);
             connectedFrame.process(connectionId,connections);
         }
         // user exist
         else if (password.equals(currUser.getPassword())) { // correct password
             if (currUser.getConnectionId() == -1) {  // the user is not logged in
-                currUser.setConnectionId(connectionId);
-                serverData.getActiveUsers().put(connectionId,currUser);
+                currUser.login(connectionId);
                 ConnectedFrame connectedFrame = new ConnectedFrame(version);
                 connectedFrame.process(connectionId,connections);
 
