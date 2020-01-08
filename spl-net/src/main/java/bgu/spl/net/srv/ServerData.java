@@ -1,7 +1,6 @@
 package bgu.spl.net.srv;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -23,6 +22,7 @@ public class ServerData {
         registeredUsers = new ConcurrentHashMap<>();
         connections =  new ConnectionsImpl();
         activeUsers = new ConcurrentHashMap<>();
+        messageCounter = new AtomicInteger();
         messageCounter.set(0);
     }
 

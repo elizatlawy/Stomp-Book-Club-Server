@@ -21,18 +21,27 @@ public class EchoClient {
         }
 
         //BufferedReader and BufferedWriter automatically using UTF-8 encoding
-        try (Socket sock = new Socket(args[0], 7777);
+        try (Socket sock = new Socket("localhost", 7777);
                 BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
                 BufferedWriter out = new BufferedWriter(new OutputStreamWriter(sock.getOutputStream()))) {
 
             System.out.println("sending message to server");
-            out.write(args[1]);
+            String connectMessage = "CONNECT" + '\n' +
+                    "accept-version:1.2" + '\n' +
+                    "host:stomp.cs.bgu.ac.il" + '\n' +
+                    "login:bob" + '\n' +
+                    "passcode:alice" + '\n' + '\u0000';
+            out.write(connectMessage);
             out.newLine();
             out.flush();
 
             System.out.println("awaiting response");
-            String line = in.readLine();
-            System.out.println("message from server: " + line);
+            int first = in.read();
+            while(first != -1){
+                String line = first + in.readLine();
+                System.out.println("message from server: " + line);
+            }
+
         }
     }
 }

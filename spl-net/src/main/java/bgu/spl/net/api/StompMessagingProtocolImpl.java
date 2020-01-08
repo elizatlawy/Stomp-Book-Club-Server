@@ -19,29 +19,29 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol {
 
     @Override
     public void process(String message) {
+        System.out.println("Mesage recived from client");
         String[] msg = message.split("\\r?\\n"); // split the message by end line
-        if(msg[0] == "CONNECT"){
+        if(msg[0].equals("CONNECT")){
             ConnectFrame connect = new ConnectFrame();
             connect.process(msg,connectionId, connections);
         }
-        else if(msg[0] == "SUBSCRIBE"){
+        else if(msg[0].equals("SUBSCRIBE")){
             SubscribeFrame subscribe = new SubscribeFrame();
             subscribe.process(msg,connectionId, connections);
         }
-        else if(msg[0] == "UNSUBSCRIBE"){
+        else if(msg[0].equals("UNSUBSCRIBE")){
             UnsubscribeFrame unsubscribeFrame = new UnsubscribeFrame();
             unsubscribeFrame.process(msg,connectionId, connections);
         }
-        else if(msg[0] == "SEND"){
+        else if(msg[0].equals("SEND")){
             SendFrame send = new SendFrame();
             send.process(msg,connectionId, connections);
         }
-        else if(msg[0] == "DISCONNECT"){
+        else if(msg[0].equals("DISCONNECT")){
             DisconnectFrame disconnectFrame = new DisconnectFrame();
-
-
-
         }
+        else
+            System.out.println("Incorrect Message received");
 
     }
 

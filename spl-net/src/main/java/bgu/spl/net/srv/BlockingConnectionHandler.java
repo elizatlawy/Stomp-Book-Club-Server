@@ -11,7 +11,7 @@ import java.net.Socket;
 
 public class BlockingConnectionHandler<T> implements Runnable, ConnectionHandler<T> {
 
-    private final MessagingProtocol<T> protocol;
+    private final StompMessagingProtocol protocol;
     private final MessageEncoderDecoder<T> encdec;
     private final Socket sock;
     private BufferedInputStream in;
@@ -21,7 +21,7 @@ public class BlockingConnectionHandler<T> implements Runnable, ConnectionHandler
     private ConnectionsImpl connections;
     private int id;
 
-    public BlockingConnectionHandler(Socket sock, MessageEncoderDecoder<T> reader, MessagingProtocol<T> protocol,ConnectionsImpl connections, int id ) {
+    public BlockingConnectionHandler(Socket sock, MessageEncoderDecoder<T> reader, StompMessagingProtocol protocol,ConnectionsImpl connections, int id ) {
         this.sock = sock;
         this.encdec = reader;
         this.protocol = protocol;
@@ -38,10 +38,10 @@ public class BlockingConnectionHandler<T> implements Runnable, ConnectionHandler
             in = new BufferedInputStream(sock.getInputStream());
             out = new BufferedOutputStream(sock.getOutputStream());
             // TODO: CHECK IF IT SHOULD BE HERE OR IN THE BaseServer
-            ((StompMessagingProtocol)protocol).start(id,connections);
+            protocol.start(id,connections);
 
             while (!protocol.shouldTerminate() && connected && (read = in.read()) >= 0) {
-                T nextMessage = encdec.decodeNextByte((byte) read);
+                String nextMessage = (String)encdec.decodeNextByte((byte) read);
                 if (nextMessage != null) {
                     protocol.process(nextMessage);
                 }

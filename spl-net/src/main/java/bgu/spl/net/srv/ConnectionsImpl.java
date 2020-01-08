@@ -13,7 +13,7 @@ public class ConnectionsImpl implements Connections {
 
     @Override
     public boolean send(int connectionId, Object msg) {
-        if (msg != null && activeConnections.contains(connectionId)) {
+        if (msg != null && activeConnections.containsKey(connectionId)) {
             activeConnections.get(connectionId).send(msg);
             return true;
         }
