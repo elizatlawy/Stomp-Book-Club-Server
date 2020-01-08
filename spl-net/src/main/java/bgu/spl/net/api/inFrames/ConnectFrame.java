@@ -1,5 +1,6 @@
 package bgu.spl.net.api.inFrames;
 
+import bgu.spl.net.api.StompMessagingProtocolImpl;
 import bgu.spl.net.api.outFrame.ConnectedFrame;
 import bgu.spl.net.api.outFrame.ErrorFrame;
 import bgu.spl.net.srv.*;
@@ -27,7 +28,7 @@ public class ConnectFrame {
 
 
 
-    public void process(String[] message, int connectionId, Connections<String> connections) {
+    public void process(String[] message, int connectionId, Connections<String> connections, StompMessagingProtocolImpl protocol) {
         initialize(message);
         User currUser = serverData.getRegisteredUsers().get(userName);
         if (currUser == null) { // user does not exist
@@ -47,12 +48,12 @@ public class ConnectFrame {
             }
             else { // the user is already logged in
                 ErrorFrame errorFrame = new ErrorFrame("User already logged in");
-                errorFrame.process(connectionId,connections);
+                errorFrame.process(connectionId,connections, protocol);
             }
         }
         else { // wrong password
             ErrorFrame errorFrame = new ErrorFrame("Wrong password");
-            errorFrame.process(connectionId,connections);
+            errorFrame.process(connectionId,connections, protocol);
         }
     }
 

@@ -14,7 +14,7 @@ public class ReceiptFrame {
 
     @Override
     public String toString() {
-        String output = "RECEIPT" + '\n' + "receipt-id:" + receipt + + '\n' + '\u0000';
+        String output = "RECEIPT" + '\n' + "receipt-id:" + receipt + '\n' + '\u0000';
         return output;
     }
 }

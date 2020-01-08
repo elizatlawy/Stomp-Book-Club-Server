@@ -1,5 +1,6 @@
 package bgu.spl.net.api.outFrame;
 
+import bgu.spl.net.api.StompMessagingProtocolImpl;
 import bgu.spl.net.srv.Connections;
 import bgu.spl.net.srv.ConnectionsImpl;
 import bgu.spl.net.srv.ServerData;
@@ -13,11 +14,11 @@ public class ErrorFrame {
 
     }
 
-    public void process(int connectionId,  Connections<String> connections) {
+    public void process(int connectionId,  Connections<String> connections, StompMessagingProtocolImpl protocol) {
         int messageNumber = ServerData.getInstance().incrementAndGetMsgCounter();
         receiptId = "message-" + messageNumber;
         connections.send(connectionId,toString());
-        connections.disconnect(connectionId);
+        protocol.terminate();
     }
 
     @Override

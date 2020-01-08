@@ -38,7 +38,8 @@ public class ConnectionsImpl implements Connections {
     @Override
     public void disconnect(int connectionId) {
         try {
-            activeConnections.get(connectionId).close();
+            ConnectionHandler handler =  activeConnections.get(connectionId);
+            handler.close();
         } catch (IOException e) {
             System.out.println("Conception close failed :" + e.getMessage() );
         }

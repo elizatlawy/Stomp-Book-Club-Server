@@ -23,7 +23,7 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol {
         String[] msg = message.split("\\r?\\n"); // split the message by end line
         if(msg[0].equals("CONNECT")){
             ConnectFrame connect = new ConnectFrame();
-            connect.process(msg,connectionId, connections);
+            connect.process(msg,connectionId, connections, this);
         }
         else if(msg[0].equals("SUBSCRIBE")){
             SubscribeFrame subscribe = new SubscribeFrame();
@@ -39,6 +39,7 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol {
         }
         else if(msg[0].equals("DISCONNECT")){
             DisconnectFrame disconnectFrame = new DisconnectFrame();
+            disconnectFrame.process(msg,connectionId,connections, this);
         }
         else
             System.out.println("Incorrect Message received");
@@ -48,5 +49,8 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol {
     @Override
     public boolean shouldTerminate() {
         return shouldTerminate;
+    }
+    public void terminate(){
+        shouldTerminate = true;
     }
 }
