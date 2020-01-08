@@ -32,7 +32,7 @@ public class MessageFrame {
                 "subscription:" + subscriptionId + '\n' +
                 "Message-id:" + serverData.incrementAndGetMsgCounter() + '\n' +
                 "destination:" + topic + '\n' +
-                msgBody +  '\u0000';
+                msgBody +  '\n' + '\u0000';
         return output;
     }
 }

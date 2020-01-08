@@ -27,18 +27,25 @@ public class EchoClient {
                     "host:stomp.cs.bgu.ac.il" + '\n' +
                     "login:bob" + '\n' +
                     "passcode:alice" + '\n' + '\u0000';
+            String subscribeMessage = "SUBSCRIBE" + '\n' +
+                    "destination: sci-fi" + '\n' +
+                    "id:78" + '\n' +
+                    "receipt:77" + '\n' + '\u0000';
+            String unsubscribeMessage = "UNSUBSCRIBE" + '\n' +
+                    "id:78" + '\n' +
+                    "receipt:77" + '\n' + '\u0000';
             String disconnectMessage = "DISCONNECT" + '\n' +
                     "receipt:77" + '\u0000';
-
-            String connectMessage2 = "CONNECT" + '\n' +
-                    "accept-version:1.2" + '\n' +
-                    "host:stomp.cs.bgu.ac.il" + '\n' +
-                    "login:bob" + '\n' +
-                    "passcode:alice" + '\n' + '\u0000';
+            String sendMessage = "SEND" + '\n' +
+                    "destination: sci-fi" + '\n' +
+                    "Bob has added the book Foundation" + '\n' + '\u0000';
 
 
             // first login
             out.write(connectMessage1);
+            out.write(subscribeMessage);
+            out.write(sendMessage);
+            //out.write(unsubscribeMessage);
             // disconnect
             out.write(disconnectMessage);
             // login again
@@ -58,29 +65,29 @@ public class EchoClient {
                 line = in.readLine();
             }
         } // try 1
-        try (Socket sock = new Socket("localhost", 7777);
-             BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
-             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(sock.getOutputStream()))) {
-
-            String connectMessage3 = "CONNECT" + '\n' +
-                    "accept-version:1.2" + '\n' +
-                    "host:stomp.cs.bgu.ac.il" + '\n' +
-                    "login:bob" + '\n' +
-                    "passcode:alice2" + '\n' + '\u0000';
-
-            out.write(connectMessage3);
-            out.newLine();
-            out.flush();
-
-            System.out.println("awaiting response");
-            String line = in.readLine();
-            while (line != null) {
-                System.out.println("message from server: " + line);
-                line = in.readLine();
-
-            }
-
-        }
+//        try (Socket sock = new Socket("localhost", 7777);
+//             BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+//             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(sock.getOutputStream()))) {
+//
+//            String connectMessage3 = "CONNECT" + '\n' +
+//                    "accept-version:1.2" + '\n' +
+//                    "host:stomp.cs.bgu.ac.il" + '\n' +
+//                    "login:bob" + '\n' +
+//                    "passcode:alice2" + '\n' + '\u0000';
+//
+//            out.write(connectMessage3);
+//            out.newLine();
+//            out.flush();
+//
+//            System.out.println("awaiting response");
+//            String line = in.readLine();
+//            while (line != null) {
+//                System.out.println("message from server: " + line);
+//                line = in.readLine();
+//
+//            }
+//
+//        } // try 2
 
     }
 }
