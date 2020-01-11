@@ -31,7 +31,7 @@ public class MessageFrame {
         String output = "MESSAGE" + '\n' +
                 "subscription:" + subscriptionId + '\n' +
                 "Message-id:" + serverData.incrementAndGetMsgCounter() + '\n' +
-                "destination:" + topic + '\n' +
+                "destination:" + topic + '\n' + '\n' +
                 msgBody +  '\n' + '\u0000';
         return output;
     }
