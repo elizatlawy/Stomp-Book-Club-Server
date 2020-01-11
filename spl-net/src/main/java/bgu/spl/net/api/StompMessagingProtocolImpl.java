@@ -40,6 +40,7 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol {
             System.out.println("Server finished process: " +   msg[0]);
         }
         else if(msg[0].equals("SEND")){
+            System.out.println("Message body: " +  msg[3]);
             SendFrame send = new SendFrame();
             send.process(msg,connectionId, connections);
             System.out.println("Server finished process: " +   msg[0]);

@@ -14,7 +14,7 @@ public class SendFrame {
     private void initialize (String[] message){
         char delimiter = ':';
         topic = message[1].substring(message[1].indexOf(delimiter) + 1);
-        msgBody =  message[2].substring(message[2].indexOf(delimiter) + 1);
+        msgBody =  message[3].substring(message[3].indexOf(delimiter) + 1);
         serverData = ServerData.getInstance();
     }
 
