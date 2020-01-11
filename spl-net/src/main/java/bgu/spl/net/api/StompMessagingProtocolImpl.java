@@ -19,7 +19,7 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol {
 
     @Override
     public void process(String message) {
-        System.out.println("Mesage recived from client");
+        System.out.println("Message received from client");
         String[] msg = message.split("\\r?\\n"); // split the message by end line
         if(msg[0].equals("CONNECT")){
             ConnectFrame connect = new ConnectFrame();
