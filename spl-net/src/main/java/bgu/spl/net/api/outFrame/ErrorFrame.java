@@ -25,7 +25,7 @@ public class ErrorFrame {
     public String toString() {
         String output = "ERROR" + '\n'
                 + "receipt-id:" +  receiptId +  '\n'
-                + "message: " + message + '\n' + '\u0000';
+                + "message: " + message + '\n';
         return output;
     }
 }

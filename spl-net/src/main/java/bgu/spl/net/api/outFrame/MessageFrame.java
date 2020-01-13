@@ -22,7 +22,7 @@ public class MessageFrame {
     }
 
     public void process() {
-        connections.send(connectionId,toString());
+        connections.send(topic, toString());
 
     }
 
@@ -32,7 +32,7 @@ public class MessageFrame {
                 "subscription:" + subscriptionId + '\n' +
                 "Message-id:" + serverData.incrementAndGetMsgCounter() + '\n' +
                 "destination:" + topic + '\n' + '\n' +
-                msgBody +  '\n' + '\u0000';
+                msgBody +  '\n';
         return output;
     }
 }
