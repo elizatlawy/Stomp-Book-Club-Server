@@ -20,8 +20,8 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol {
     @Override
     public void process(String message) {
         System.out.println("Message received from client");
-        if(message.charAt(0) == '\n')
-            message = message.substring(1);
+//        if(message.charAt(0) == '\n')
+//            message = message.substring(1);
         String[] msg = message.split("\\r?\\n"); // split the message by end line
         System.out.println("Server Received: " + msg[0]);
         if(msg[0].equals("CONNECT")){
