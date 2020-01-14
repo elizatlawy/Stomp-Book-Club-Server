@@ -17,7 +17,7 @@ public class ConnectedFrame {
 
     @Override
     public String toString() {
-        String output = "CONNECTED" + '\n' + "version:"+version + '\n';
+        String output = "CONNECTED" + '\n' + "version:"+ version + '\n';
         return output;
     }
 }
