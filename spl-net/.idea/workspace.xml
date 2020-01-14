@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b661f945-c916-4a76-9ec4-3fcb8be627a4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bgu/spl/net/api/StompMessagingProtocolImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bgu/spl/net/api/StompMessagingProtocolImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bgu/spl/net/api/outFrame/ErrorFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bgu/spl/net/api/outFrame/ErrorFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bgu/spl/net/impl/stomp/StompServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bgu/spl/net/impl/stomp/StompServer.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,18 +51,6 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager" selected="Application.StompServer">
     <configuration name="EchoClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="bgu.spl.net.impl.echo.EchoClient" />
@@ -94,6 +84,18 @@
         <item itemvalue="Application.EchoClient" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -252,22 +254,38 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1578515992029" />
-    <state width="1807" height="278" key="GridCell.Tab.0.bottom" timestamp="1578744709113">
+    <state width="1582" height="331" key="GridCell.Tab.0.bottom" timestamp="1579021215924">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1578744709113" />
-    <state width="1807" height="278" key="GridCell.Tab.0.center" timestamp="1578744709112">
+    <state width="1582" height="331" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1579021215924" />
+    <state width="1582" height="331" key="GridCell.Tab.0.center" timestamp="1579021215924">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1578744709112" />
-    <state width="1807" height="278" key="GridCell.Tab.0.left" timestamp="1578744709112">
+    <state width="1582" height="331" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1579021215924" />
+    <state width="1582" height="331" key="GridCell.Tab.0.left" timestamp="1579021215923">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1578744709112" />
-    <state width="1807" height="278" key="GridCell.Tab.0.right" timestamp="1578744709113">
+    <state width="1582" height="331" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1579021215923" />
+    <state width="1582" height="331" key="GridCell.Tab.0.right" timestamp="1579021215924">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="278" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1578744709113" />
+    <state width="1582" height="331" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1579021215924" />
+    <state width="1582" height="357" key="GridCell.Tab.1.bottom" timestamp="1579018033977">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1582" height="357" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1579018033977" />
+    <state width="1582" height="357" key="GridCell.Tab.1.center" timestamp="1579018033976">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1582" height="357" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1579018033976" />
+    <state width="1582" height="357" key="GridCell.Tab.1.left" timestamp="1579018033975">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1582" height="357" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1579018033975" />
+    <state width="1582" height="357" key="GridCell.Tab.1.right" timestamp="1579018033976">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1582" height="357" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1579018033976" />
     <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1578135276638">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -292,10 +310,13 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/bgu/spl/net/api/outFrame/MessageFrame.java</url>
-          <line>15</line>
-          <option name="timeStamp" value="18" />
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/bgu/spl/net/srv/ConnectionsImpl.java</url>
+          <line>38</line>
+          <properties class="bgu.spl.net.srv.ConnectionsImpl" method="disconnect">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -4,13 +4,16 @@ import bgu.spl.net.api.StompMessagingProtocolImpl;
 import bgu.spl.net.srv.Connections;
 import bgu.spl.net.srv.ConnectionsImpl;
 import bgu.spl.net.srv.ServerData;
+import bgu.spl.net.srv.User;
 
 public class ErrorFrame {
     private String receiptId;
     private String message;
+    private ServerData serverData;
 
     public ErrorFrame(String message) {
         this.message = message;
+        serverData = ServerData.getInstance();
 
     }
 
@@ -18,6 +21,8 @@ public class ErrorFrame {
         int messageNumber = ServerData.getInstance().incrementAndGetMsgCounter();
         receiptId = "message-" + messageNumber;
         connections.send(connectionId,toString());
+        User currUser = serverData.getActiveUsers().get(connectionId);
+        currUser.logout();
         protocol.terminate();
     }
 

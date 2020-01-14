@@ -8,7 +8,7 @@ public class StompServer {
 
     public static void main(String[] args) {
         Server.threadPerClient(
-                3695, //port
+                2302, //port
                 StompMessagingProtocolImpl::new, //protocol factory
                 MessageEncoderDecoderImpl::new //message encoder decoder factory
         ).serve();
