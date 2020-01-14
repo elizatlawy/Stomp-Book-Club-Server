@@ -22,7 +22,8 @@ public class ErrorFrame {
         receiptId = "message-" + messageNumber;
         connections.send(connectionId,toString());
         User currUser = serverData.getActiveUsers().get(connectionId);
-        currUser.logout();
+        if(currUser != null) // in case of already logged in user we want to disconnect him
+            currUser.logout();
         protocol.terminate();
     }
 
