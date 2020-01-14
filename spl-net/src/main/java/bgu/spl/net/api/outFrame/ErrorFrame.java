@@ -25,7 +25,8 @@ public class ErrorFrame {
     public String toString() {
         String output = "ERROR" + '\n'
                 + "receipt-id:" +  receiptId +  '\n'
-                + "message: " + message + '\n';
+                + "message: " + message + '\n' + '\n' +
+                "The message: " + message + '\n'; // the last line represent the message body if some client reads it
         return output;
     }
 }

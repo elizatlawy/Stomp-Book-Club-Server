@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b661f945-c916-4a76-9ec4-3fcb8be627a4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bgu/spl/net/api/StompMessagingProtocolImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bgu/spl/net/api/StompMessagingProtocolImpl.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -115,7 +114,8 @@
       <workItem from="1578478796487" duration="14879000" />
       <workItem from="1578584862357" duration="2899000" />
       <workItem from="1578731280906" duration="2243000" />
-      <workItem from="1578918110923" duration="11688000" />
+      <workItem from="1578918110923" duration="12881000" />
+      <workItem from="1578993151160" duration="1809000" />
     </task>
     <task id="LOCAL-00001" summary="ConnectionsImpl + User">
       <created>1578135274815</created>
@@ -187,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578930338085</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Eli - small fixes">
+      <created>1578941843279</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1578941843279</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
