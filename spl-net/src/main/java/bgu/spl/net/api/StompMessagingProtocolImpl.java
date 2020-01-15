@@ -19,7 +19,7 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol {
 
     @Override
     public void process(String message) {
-        System.out.println("Message received from client");
+        //System.out.println("Message received from client");
         if(message.length() > 0){
             if(message.charAt(0) == '\n')
                 message = message.substring(1);
@@ -28,28 +28,23 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol {
             if(msg[0].equals("CONNECT")){
                 ConnectFrame connect = new ConnectFrame();
                 connect.process(msg,connectionId, connections, this);
-                System.out.println("Server finished process: " +   msg[0]);
             }
             else if(msg[0].equals("SUBSCRIBE")){
                 SubscribeFrame subscribe = new SubscribeFrame();
                 subscribe.process(msg,connectionId, connections);
-                System.out.println("Server finished process: " +   msg[0]);
             }
             else if(msg[0].equals("UNSUBSCRIBE")){
                 UnsubscribeFrame unsubscribeFrame = new UnsubscribeFrame();
                 unsubscribeFrame.process(msg,connectionId, connections);
-                System.out.println("Server finished process: " +   msg[0]);
             }
             else if(msg[0].equals("SEND")){
-                System.out.println("Message body: " +  msg[3]);
+                //System.out.println("Message body: " +  msg[3]);
                 SendFrame send = new SendFrame();
                 send.process(msg,connectionId, connections);
-                System.out.println("Server finished process: " +   msg[0]);
             }
             else if(msg[0].equals("DISCONNECT")){
                 DisconnectFrame disconnectFrame = new DisconnectFrame();
                 disconnectFrame.process(msg,connectionId,connections, this);
-                System.out.println("Server finished process: " +   msg[0]);
             }
             else
                 System.out.println("Incorrect Message received");

@@ -16,7 +16,6 @@ public class ConnectFrame {
     public ConnectFrame() {}
 
     private void initialize (String[] message){
-        // TODO check what to do in case of socket error
         char delimiter = ':';
         version = message[1].substring(message[1].indexOf(delimiter) + 1);
         host = message[2].substring(message[2].indexOf(delimiter) + 1);
