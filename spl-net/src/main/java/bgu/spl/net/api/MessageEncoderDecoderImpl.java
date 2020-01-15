@@ -14,7 +14,6 @@ public class MessageEncoderDecoderImpl implements MessageEncoderDecoder {
         }
         pushByte(nextByte);
         return null; //not a line yet
-
     }
 
     @Override
