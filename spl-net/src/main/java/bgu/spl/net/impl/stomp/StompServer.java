@@ -13,7 +13,7 @@ public class StompServer {
         short port = (short)Integer.parseInt(args[0]);
         if(args[1].equals("tpc"))
             runThreadPerClientServer(port);
-        else
+        else if(args[1].equals("reactor"))
             runReactorServer(port);
     }
 
