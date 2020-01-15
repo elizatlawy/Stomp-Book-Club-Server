@@ -15,7 +15,7 @@ public abstract class BaseServer<T> implements Server<T> {
     private final Supplier<StompMessagingProtocol> protocolFactory;
     private final Supplier<MessageEncoderDecoder<T>> encdecFactory;
     private ServerSocket sock;
-    private int handlersCount = 0;
+    private int handlersCount;
     private ServerData serverData;
 
     public BaseServer(int port, Supplier<StompMessagingProtocol> protocolFactory, Supplier<MessageEncoderDecoder<T>> encdecFactory) {
@@ -25,6 +25,7 @@ public abstract class BaseServer<T> implements Server<T> {
         this.encdecFactory = encdecFactory;
 		this.sock = null;
 		serverData = ServerData.getInstance();
+        handlersCount = 0;
     }
 
     @Override

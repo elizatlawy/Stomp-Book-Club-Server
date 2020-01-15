@@ -24,8 +24,6 @@ public class SendFrame {
         String subscriptionId = currUser.getSubscriptionId(topic);
         MessageFrame messageFrame = new MessageFrame(subscriptionId,topic,msgBody,connectionId,connections);
         messageFrame.process();
-
-
     }
 
 
