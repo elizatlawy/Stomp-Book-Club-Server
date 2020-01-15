@@ -19,25 +19,25 @@ public class BlockingConnectionHandler<T> implements Runnable, ConnectionHandler
     private volatile boolean connected = true;
 
     private ConnectionsImpl connections;
-    private int id;
+    private int connectionHandlerId;
 
-    public BlockingConnectionHandler(Socket sock, MessageEncoderDecoder<T> reader, StompMessagingProtocol protocol,ConnectionsImpl connections, int id ) {
+    public BlockingConnectionHandler(Socket sock, MessageEncoderDecoder<T> reader, StompMessagingProtocol protocol,ConnectionsImpl connections, int connectionHandlerId ) {
         this.sock = sock;
         this.encdec = reader;
         this.protocol = protocol;
         this.connections = connections;
-        this.id = id;
+        this.connectionHandlerId = connectionHandlerId;
     }
 
     @Override
     public void run() {
         try (Socket sock = this.sock) { //just for automatic closing
-            connections.connect(id,this);
+            connections.connect(connectionHandlerId,this);
             int read;
 
             in = new BufferedInputStream(sock.getInputStream());
             out = new BufferedOutputStream(sock.getOutputStream());
-            protocol.start(id,connections);
+            protocol.start(connectionHandlerId,connections);
 
             while (!protocol.shouldTerminate() && connected && (read = in.read()) >= 0) {
                 String nextMessage = (String)encdec.decodeNextByte((byte) read);
@@ -45,7 +45,7 @@ public class BlockingConnectionHandler<T> implements Runnable, ConnectionHandler
                     protocol.process(nextMessage);
                 }
             }
-            connections.disconnect(id);
+            connections.disconnect(connectionHandlerId);
 
         } catch (IOException ex) {
             ex.printStackTrace();
