@@ -31,7 +31,6 @@ public class StompServer {
                 StompMessagingProtocolImpl::new, //protocol factory
                 MessageEncoderDecoderImpl::new //message encoder decoder factory
         ).serve();
-
     }
 
 }

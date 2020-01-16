@@ -54,10 +54,6 @@ public class User {
         subscriptionsByTopic.clear();
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
     public String getPassword() {
         return password;
     }

@@ -13,34 +13,34 @@ public class ServerData {
     private ConcurrentHashMap<String, LinkedList<User>> genreFollowers;
     private ConcurrentHashMap<String, User> registeredUsers; // key: userName value: User
     private ConcurrentHashMap<Integer, User> activeUsers; // key: connectionId value: User
-    private  ConnectionsImpl connections;
+    private ConnectionsImpl connections;
     private AtomicInteger messageCounter;
 
 
     private ServerData() {
         genreFollowers = new ConcurrentHashMap<>();
         registeredUsers = new ConcurrentHashMap<>();
-        connections =  new ConnectionsImpl();
+        connections = new ConnectionsImpl();
         activeUsers = new ConcurrentHashMap<>();
         messageCounter = new AtomicInteger();
         messageCounter.set(0);
     }
 
-    public static ServerData getInstance(){
+    public static ServerData getInstance() {
         return serverDataHolder.instance;
 
     }
 
     public void addFollower(String topic, User user) {
         genreFollowers.putIfAbsent(topic, new LinkedList<>());
-        LinkedList topicList = genreFollowers.get(topic);
+        LinkedList<User> topicList = genreFollowers.get(topic);
         synchronized (topicList) {
             topicList.add(user);
         }
     }
 
-    public void removeFollower (String topic, User user){
-        LinkedList topicList = genreFollowers.get(topic);
+    public void removeFollower(String topic, User user) {
+        LinkedList<User> topicList = genreFollowers.get(topic);
         synchronized (topicList) {
             topicList.remove(user);
         }
@@ -60,7 +60,7 @@ public class ServerData {
     }
 
     public int incrementAndGetMsgCounter() {
-        return  messageCounter.incrementAndGet();
+        return messageCounter.incrementAndGet();
     }
 
     public ConcurrentHashMap<Integer, User> getActiveUsers() {
