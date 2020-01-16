@@ -25,29 +25,32 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol {
                 message = message.substring(1);
             String[] msg = message.split("\\r?\\n"); // split the message by end line
             System.out.println("Server Received: " + msg[0]);
-            if(msg[0].equals("CONNECT")){
-                ConnectFrame connect = new ConnectFrame();
-                connect.process(msg,connectionId, connections, this);
+            switch (msg[0]) {
+                case "CONNECT":
+                    ConnectFrame connect = new ConnectFrame();
+                    connect.process(msg, connectionId, connections, this);
+                    break;
+                case "SUBSCRIBE":
+                    SubscribeFrame subscribe = new SubscribeFrame();
+                    subscribe.process(msg, connectionId, connections);
+                    break;
+                case "UNSUBSCRIBE":
+                    UnsubscribeFrame unsubscribeFrame = new UnsubscribeFrame();
+                    unsubscribeFrame.process(msg, connectionId, connections);
+                    break;
+                case "SEND":
+                    //System.out.println("Message body: " +  msg[3]);
+                    SendFrame send = new SendFrame();
+                    send.process(msg, connectionId, connections);
+                    break;
+                case "DISCONNECT":
+                    DisconnectFrame disconnectFrame = new DisconnectFrame();
+                    disconnectFrame.process(msg, connectionId, connections, this);
+                    break;
+                default:
+                    System.out.println("Incorrect Message received");
+                    break;
             }
-            else if(msg[0].equals("SUBSCRIBE")){
-                SubscribeFrame subscribe = new SubscribeFrame();
-                subscribe.process(msg,connectionId, connections);
-            }
-            else if(msg[0].equals("UNSUBSCRIBE")){
-                UnsubscribeFrame unsubscribeFrame = new UnsubscribeFrame();
-                unsubscribeFrame.process(msg,connectionId, connections);
-            }
-            else if(msg[0].equals("SEND")){
-                //System.out.println("Message body: " +  msg[3]);
-                SendFrame send = new SendFrame();
-                send.process(msg,connectionId, connections);
-            }
-            else if(msg[0].equals("DISCONNECT")){
-                DisconnectFrame disconnectFrame = new DisconnectFrame();
-                disconnectFrame.process(msg,connectionId,connections, this);
-            }
-            else
-                System.out.println("Incorrect Message received");
         }
     }
 
