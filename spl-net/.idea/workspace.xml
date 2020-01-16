@@ -306,9 +306,10 @@
     </state>
     <state x="795" y="428" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1579194495762" />
     <state x="834" y="444" width="308" height="216" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1578128778849" />
-    <state x="522" y="147" width="932" height="810" key="CommitChangelistDialog2" timestamp="1579036339411">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state x="471" y="123" width="932" height="810" key="CommitChangelistDialog2" timestamp="1579195179795">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
+    <state x="471" y="123" key="CommitChangelistDialog2/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1579195179795" />
     <state x="522" y="147" width="932" height="810" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1579036339411" />
     <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1578515992029">
       <screen x="67" y="27" width="1853" height="1053" />
@@ -350,9 +351,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="909" y="146" key="SettingsEditor/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1579195002688" />
-    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1579036342130">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state x="540" y="268" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1579195183588">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
+    <state x="540" y="268" key="Vcs.Push.Dialog.v2/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1579195183588" />
     <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1579036342130" />
     <state x="649" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1579089630425">
       <screen x="67" y="27" width="1853" height="1053" />
