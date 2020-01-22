@@ -24,7 +24,7 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol {
             if(message.charAt(0) == '\n')
                 message = message.substring(1);
             String[] msg = message.split("\\r?\\n"); // split the message by end line
-            System.out.println("Server Received: " + msg[0]);
+            //System.out.println("Server Received: " + msg[0]);
             switch (msg[0]) {
                 case "CONNECT":
                     ConnectFrame connect = new ConnectFrame();

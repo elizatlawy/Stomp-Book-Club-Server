@@ -2,7 +2,6 @@ package bgu.spl.net.api.outFrame;
 
 import bgu.spl.net.api.StompMessagingProtocolImpl;
 import bgu.spl.net.srv.Connections;
-import bgu.spl.net.srv.ConnectionsImpl;
 import bgu.spl.net.srv.ServerData;
 import bgu.spl.net.srv.User;
 
